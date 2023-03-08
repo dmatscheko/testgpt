@@ -52,7 +52,9 @@ def replace_spaces_and_tabs(text):
 
 def fix_code_blocks(text):
     text = text.strip()
+    text = re.sub('[^*](\*)[^*]', ' aaaaaaafuckthispythonthingdestroysmultiplicationaaaaaaa ', text)
     text = markdown.markdown(text, extensions=['fenced_code', 'codehilite', 'tables', 'nl2br'])
+    text = re.sub('aaaaaaafuckthispythonthingdestroysmultiplicationaaaaaaa', '&#42;', text)
     # text = markdown.markdown(text, extensions=['pymdownx.superfences', 'codehilite', 'tables', 'nl2br'])
     text = re.sub('(?ims)<pre>(.+?)</pre>', lambda x: replace_spaces_and_tabs(x.group()), text)
     print("\n--\n" + text + "\n--\n")
